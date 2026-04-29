@@ -1,14 +1,26 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { WHATSAPP_LINK } from "@/data/menu";
-import { Clock, Flame } from "lucide-react";
+import { foods, formatRupiah, WHATSAPP_LINK } from "@/data/menu";
+import { Clock, Flame, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Hero = () => {
+  const [active, setActive] = useState(0);
+  const total = foods.length;
+
+  // Auto-rotate setiap 4 detik
+  useEffect(() => {
+    const id = setInterval(() => setActive((i) => (i + 1) % total), 4000);
+    return () => clearInterval(id);
+  }, [total]);
+
+  const go = (i: number) => setActive((i + total) % total);
+  const current = foods[active];
+
   return (
     <section
       id="beranda"
       className="relative pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-hero overflow-hidden"
     >
-      {/* dekorasi */}
       <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
 
@@ -50,17 +62,72 @@ const Hero = () => {
           </div>
         </div>
 
+        {/* Slideshow signature dish */}
         <div className="relative animate-fade-in">
-          <div className="aspect-square max-w-md mx-auto rounded-3xl bg-gradient-to-br from-primary/20 to-secondary border border-primary/20 shadow-card flex items-center justify-center overflow-hidden">
-            {/* Placeholder gambar signature dish */}
-            <div className="text-center px-8">
-              <div className="text-7xl mb-4">🍗</div>
-              <p className="font-serif-display text-2xl text-gold">Signature Dish</p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Ganti area ini dengan foto menu andalanmu
-              </p>
+          <div className="relative aspect-square max-w-md mx-auto rounded-3xl overflow-hidden border border-primary/20 shadow-card bg-gradient-to-br from-primary/20 to-secondary">
+            {/* Slides */}
+            {foods.map((item, i) => (
+              <div
+                key={item.name}
+                className={`absolute inset-0 flex flex-col items-center justify-center px-8 text-center transition-opacity duration-700 ${
+                  i === active ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+                aria-hidden={i !== active}
+              >
+                <div className="text-7xl mb-3" aria-hidden>🍗</div>
+                {item.bestSeller && (
+                  <span className="mb-2 inline-block rounded-full bg-gradient-gold text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-3 py-1 shadow-gold">
+                    ★ Best Seller
+                  </span>
+                )}
+                <p className="font-serif-display text-xl md:text-2xl text-foreground leading-snug">
+                  {item.name}
+                </p>
+                <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
+                  {item.description}
+                </p>
+                <p className="mt-3 text-gold font-semibold">
+                  {formatRupiah(item.price)}
+                </p>
+              </div>
+            ))}
+
+            {/* Prev / Next */}
+            <button
+              onClick={() => go(active - 1)}
+              aria-label="Sebelumnya"
+              className="absolute left-2 top-1/2 -translate-y-1/2 inline-flex h-9 w-9 items-center justify-center rounded-full bg-background/60 backdrop-blur border border-border text-foreground hover:text-gold hover:border-primary/50 transition"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              onClick={() => go(active + 1)}
+              aria-label="Berikutnya"
+              className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex h-9 w-9 items-center justify-center rounded-full bg-background/60 backdrop-blur border border-border text-foreground hover:text-gold hover:border-primary/50 transition"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+
+            {/* Counter */}
+            <div className="absolute top-3 right-3 rounded-full bg-background/70 backdrop-blur border border-border px-2.5 py-1 text-[10px] font-medium text-muted-foreground">
+              {active + 1} / {total}
             </div>
           </div>
+
+          {/* Dots */}
+          <div className="mt-4 flex items-center justify-center gap-2">
+            {foods.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => go(i)}
+                aria-label={`Slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all ${
+                  i === active ? "w-8 bg-gradient-gold" : "w-2 bg-border hover:bg-primary/40"
+                }`}
+              />
+            ))}
+          </div>
+
           <div className="absolute -bottom-4 -left-4 hidden md:flex items-center gap-3 bg-card border border-border rounded-2xl px-4 py-3 shadow-card">
             <div className="text-2xl">⭐</div>
             <div>
