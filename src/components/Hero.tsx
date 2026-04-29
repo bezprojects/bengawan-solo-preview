@@ -9,7 +9,7 @@ const Hero = () => {
 
   // Auto-rotate setiap 4 detik
   useEffect(() => {
-    const id = setInterval(() => setActive((i) => (i + 1) % total), 4000);
+    const id = setInterval(() => setActive((i) => (i + 1) % total), 3000);
     return () => clearInterval(id);
   }, [total]);
 
