@@ -93,8 +93,8 @@ export const testimonials = [
   },
 ];
 
-export const WHATSAPP_NUMBER = "6288778331354"; // format internasional tanpa +
-export const WHATSAPP_DISPLAY = "0887-7833-1354";
+export const WHATSAPP_NUMBER = "628877831354"; // format internasional tanpa +
+export const WHATSAPP_DISPLAY = "0887-783-1354";
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Halo%20Bengawan%20Solo%20Food%20Hub%2C%20saya%20ingin%20pesan`;
 
 export const SOCIAL_LINKS = {

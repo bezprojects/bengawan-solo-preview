@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { foods, formatRupiah, WHATSAPP_LINK } from "@/data/menu";
+import { heroSlides } from "@/data/hero-slides";
 import { Clock, Flame, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Hero = () => {
   const [active, setActive] = useState(0);
-  const total = foods.length;
+  const total = heroSlides.length;
 
   // Auto-rotate setiap 4 detik
   useEffect(() => {
-    const id = setInterval(() => setActive((i) => (i + 1) % total), 3000);
+    const id = setInterval(() => setActive((i) => (i + 1) % total), 4000);
     return () => clearInterval(id);
   }, [total]);
 
   const go = (i: number) => setActive((i + total) % total);
-  const current = foods[active];
+  const currentSlide = heroSlides[active];
 
   return (
     <section
@@ -62,33 +63,45 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Slideshow signature dish */}
+        {/* Hero Image Carousel */}
         <div className="relative animate-fade-in">
-          <div className="relative aspect-square max-w-md mx-auto rounded-3xl overflow-hidden border border-primary/20 shadow-card bg-gradient-to-br from-primary/20 to-secondary">
+          <div className="relative aspect-[4/3] md:aspect-square max-w-md mx-auto rounded-3xl overflow-hidden border border-primary/20 shadow-card bg-gradient-to-br from-primary/10 to-secondary/10">
             {/* Slides */}
-            {foods.map((item, i) => (
+            {heroSlides.map((slide, i) => (
               <div
-                key={item.name}
-                className={`absolute inset-0 flex flex-col items-center justify-center px-8 text-center transition-opacity duration-700 ${
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-700 ${
                   i === active ? "opacity-100" : "opacity-0 pointer-events-none"
                 }`}
                 aria-hidden={i !== active}
               >
-                <div className="text-7xl mb-3" aria-hidden>🍗</div>
-                {item.bestSeller && (
-                  <span className="mb-2 inline-block rounded-full bg-gradient-gold text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-3 py-1 shadow-gold">
-                    ★ Best Seller
-                  </span>
-                )}
-                <p className="font-serif-display text-xl md:text-2xl text-foreground leading-snug">
-                  {item.name}
-                </p>
-                <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
-                  {item.description}
-                </p>
-                <p className="mt-3 text-gold font-semibold">
-                  {formatRupiah(item.price)}
-                </p>
+                <div className="relative h-full w-full">
+                  <picture>
+                    {/* AVIF - most modern, best compression */}
+                    <source srcSet={slide.avifImage} type="image/avif" />
+                    {/* WebP - good browser support */}
+                    <source srcSet={slide.webpImage} type="image/webp" />
+                    {/* Fallback to WebP */}
+                    <img
+                      src={slide.image}
+                      alt={slide.alt}
+                      className="h-full w-full object-cover"
+                      loading={i === 0 ? "eager" : "lazy"}
+                    />
+                  </picture>
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  
+                  {/* Slide content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="font-serif-display text-xl md:text-2xl font-bold leading-snug">
+                      {slide.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-white/90 line-clamp-2">
+                      {slide.description}
+                    </p>
+                  </div>
+                </div>
               </div>
             ))}
 
@@ -96,27 +109,27 @@ const Hero = () => {
             <button
               onClick={() => go(active - 1)}
               aria-label="Sebelumnya"
-              className="absolute left-2 top-1/2 -translate-y-1/2 inline-flex h-9 w-9 items-center justify-center rounded-full bg-background/60 backdrop-blur border border-border text-foreground hover:text-gold hover:border-primary/50 transition"
+              className="absolute left-2 top-1/2 -translate-y-1/2 inline-flex h-9 w-9 items-center justify-center rounded-full bg-background/60 backdrop-blur border border-border text-foreground hover:text-gold hover:border-primary/50 transition z-10"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             <button
               onClick={() => go(active + 1)}
               aria-label="Berikutnya"
-              className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex h-9 w-9 items-center justify-center rounded-full bg-background/60 backdrop-blur border border-border text-foreground hover:text-gold hover:border-primary/50 transition"
+              className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex h-9 w-9 items-center justify-center rounded-full bg-background/60 backdrop-blur border border-border text-foreground hover:text-gold hover:border-primary/50 transition z-10"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
 
             {/* Counter */}
-            <div className="absolute top-3 right-3 rounded-full bg-background/70 backdrop-blur border border-border px-2.5 py-1 text-[10px] font-medium text-muted-foreground">
+            <div className="absolute top-3 right-3 rounded-full bg-background/70 backdrop-blur border border-border px-2.5 py-1 text-[10px] font-medium text-muted-foreground z-10">
               {active + 1} / {total}
             </div>
           </div>
 
           {/* Dots */}
           <div className="mt-4 flex items-center justify-center gap-2">
-            {foods.map((_, i) => (
+            {heroSlides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => go(i)}
@@ -133,6 +146,65 @@ const Hero = () => {
             <div>
               <div className="text-sm font-semibold">4.8 / 5.0</div>
               <div className="text-xs text-muted-foreground">Rating pelanggan</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Food Carousel */}
+        <div className="mt-12 md:mt-16">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="font-serif-display text-2xl md:text-3xl font-bold">
+              Menu <span className="text-gold">Favorit</span>
+            </h2>
+            <a 
+              href="#menu" 
+              className="text-sm font-medium text-gold hover:text-primary flex items-center gap-1"
+            >
+              Lihat semua menu
+              <ChevronRight className="h-4 w-4" />
+            </a>
+          </div>
+          
+          <div className="relative">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {foods.slice(0, 5).map((food, index) => (
+                <div 
+                  key={food.name}
+                  className="group relative bg-card border border-border rounded-2xl p-4 hover:border-primary/40 hover:shadow-card transition-all"
+                >
+                  {food.bestSeller && (
+                    <div className="absolute -top-2 -right-2">
+                      <span className="inline-flex items-center rounded-full bg-gradient-gold text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-2 py-1 shadow-gold">
+                        ★ Best
+                      </span>
+                    </div>
+                  )}
+                  <div className="aspect-square rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 mb-3 flex items-center justify-center">
+                    <div className="text-4xl">🍗</div>
+                  </div>
+                  <h3 className="font-serif-display text-lg font-bold line-clamp-1">
+                    {food.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
+                    {food.description}
+                  </p>
+                  <div className="mt-3 flex items-center justify-between">
+                    <span className="text-gold font-semibold">
+                      {formatRupiah(food.price)}
+                    </span>
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="border-primary/30 text-foreground hover:bg-primary/10 hover:text-gold"
+                      asChild
+                    >
+                      <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                        Pesan
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
