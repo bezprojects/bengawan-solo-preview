@@ -25,13 +25,23 @@ const About = () => {
         <div className="max-w-2xl mx-auto text-center mb-14">
           <p className="text-xs uppercase tracking-[0.3em] text-gold mb-3">Tentang Kami</p>
           <h2 className="font-serif-display text-3xl md:text-4xl font-bold">
-            Sederhana, hangat, dan selalu siap menemani.
+            Melayani Dengan Hati, Hadir Sebagai Solusi.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Bengawan Solo Food Hub adalah warung kuliner khas Solo yang menyajikan
-            ayam bakar, ayam penyet, dan minuman segar — dibuka 24 jam untuk
-            menemani setiap waktu makanmu.
+            Bengawan Solo Food Hub adalah kumpulan resto-resto pilihan area UNS yang menyediakan
+            layanan pesan antar online mandiri 24 jam nonstop dengan harga offline karena tanpa
+            biaya pemesanan, sharing profit & sharing promo.
           </p>
+
+          {/* Price advantage callout */}
+          <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-green-500/30 bg-green-500/10 px-5 py-3 text-sm">
+            <span className="text-2xl">💰</span>
+            <span className="text-muted-foreground">
+              Harga selisih{" "}
+              <span className="font-bold text-green-400">40%–50%</span>{" "}
+              lebih murah dibanding platform online lainnya
+            </span>
+          </div>
         </div>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">

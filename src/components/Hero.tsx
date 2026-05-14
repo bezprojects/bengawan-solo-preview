@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { foods, formatRupiah, WHATSAPP_LINK } from "@/data/menu";
 import { heroSlides } from "@/data/hero-slides";
-import { Clock, Flame, ChevronLeft, ChevronRight } from "lucide-react";
+import { Clock, ChevronLeft, ChevronRight } from "lucide-react";
 
 const Hero = () => {
   const [active, setActive] = useState(0);
@@ -32,14 +32,16 @@ const Hero = () => {
             Buka 24 Jam · Setiap Hari
           </div>
           <h1 className="font-serif-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.05]">
-            Hub Kuliner <span className="text-gold">Solo</span>
+            Kuliner <span className="text-gold">Solo</span>
             <br />
             dalam Genggaman.
           </h1>
           <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-xl">
             Ayam bakar, ayam penyet, dan minuman segar khas Solo.
-            Disajikan hangat kapan saja kamu butuh — siang, malam, atau dini hari.
+            Disajikan hangat kapan saja kamu butuh. Siang, malam, atau dini hari.
           </p>
+
+
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg" className="bg-gradient-gold text-primary-foreground hover:opacity-90 shadow-gold">
               <a href="#menu">Lihat Menu</a>
@@ -51,12 +53,12 @@ const Hero = () => {
             </Button>
           </div>
 
-          <div className="mt-10 flex items-center gap-6 text-xs text-muted-foreground">
+          <div className="mt-10 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <Flame className="h-4 w-4 text-gold" />
-              Sambal racik harian
+              <span className="h-2 w-2 rounded-full bg-green-400" />
+              Hemat 40–50% vs GoFood/ShopeeFood
             </div>
-            <div className="hidden sm:flex items-center gap-2">
+            <div className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               Cita rasa autentik Solo
             </div>
