@@ -15,7 +15,6 @@ const Hero = () => {
   }, [total]);
 
   const go = (i: number) => setActive((i + total) % total);
-  const currentSlide = heroSlides[active];
 
   return (
     <section
@@ -78,19 +77,12 @@ const Hero = () => {
                 aria-hidden={i !== active}
               >
                 <div className="relative h-full w-full">
-                  <picture>
-                    {/* AVIF - most modern, best compression */}
-                    <source srcSet={slide.avifImage} type="image/avif" />
-                    {/* WebP - good browser support */}
-                    <source srcSet={slide.webpImage} type="image/webp" />
-                    {/* Fallback to WebP */}
-                    <img
-                      src={slide.image}
-                      alt={slide.alt}
-                      className="h-full w-full object-cover"
-                      loading={i === 0 ? "eager" : "lazy"}
-                    />
-                  </picture>
+                  <img
+                    src={slide.image}
+                    alt={slide.alt}
+                    className="h-full w-full object-cover"
+                    loading={i === 0 ? "eager" : "lazy"}
+                  />
                   {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   
@@ -168,42 +160,53 @@ const Hero = () => {
           </div>
           
           <div className="relative">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              {foods.slice(0, 5).map((food, index) => (
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {foods.slice(0, 5).map((food) => (
                 <div 
                   key={food.name}
-                  className="group relative bg-card border border-border rounded-2xl p-4 hover:border-primary/40 hover:shadow-card transition-all"
+                  className="group relative bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 hover:shadow-card transition-all"
                 >
                   {food.bestSeller && (
-                    <div className="absolute -top-2 -right-2">
+                    <div className="absolute top-2 left-2 z-10">
                       <span className="inline-flex items-center rounded-full bg-gradient-gold text-primary-foreground text-[10px] font-bold uppercase tracking-wider px-2 py-1 shadow-gold">
                         ★ Best
                       </span>
                     </div>
                   )}
-                  <div className="aspect-square rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 mb-3 flex items-center justify-center">
-                    <div className="text-4xl">🍗</div>
+                  <div className="aspect-[4/3] bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center overflow-hidden">
+                    {food.image ? (
+                      <img
+                        src={food.image}
+                        alt={food.name}
+                        className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span className="text-4xl">🍗</span>
+                    )}
                   </div>
-                  <h3 className="font-serif-display text-lg font-bold line-clamp-1">
-                    {food.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-                    {food.description}
-                  </p>
-                  <div className="mt-3 flex items-center justify-between">
-                    <span className="text-gold font-semibold">
-                      {formatRupiah(food.price)}
-                    </span>
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="border-primary/30 text-foreground hover:bg-primary/10 hover:text-gold"
-                      asChild
-                    >
-                      <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-                        Pesan
-                      </a>
-                    </Button>
+                  <div className="p-4">
+                    <h3 className="font-serif-display text-lg font-bold line-clamp-1">
+                      {food.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                      {food.description}
+                    </p>
+                    <div className="mt-3 flex flex-col gap-2">
+                      <span className="text-gold font-semibold">
+                        {formatRupiah(food.price)}
+                      </span>
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        className="w-full border-primary/30 text-foreground hover:bg-primary/10 hover:text-gold"
+                        asChild
+                      >
+                        <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+                          Pesan
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               ))}

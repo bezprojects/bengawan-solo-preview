@@ -6,9 +6,17 @@ import { drinks, foods, formatRupiah, MenuItem, WHATSAPP_LINK } from "@/data/men
 
 const MenuCard = ({ item }: { item: MenuItem }) => (
   <article className="group relative rounded-2xl overflow-hidden border border-border bg-card shadow-card hover:border-primary/40 hover:-translate-y-1 transition-all duration-300">
-    <div className="aspect-[4/3] bg-gradient-to-br from-secondary to-background flex items-center justify-center text-6xl">
-      {/* Placeholder — ganti dengan <img src=... /> */}
-      <span aria-hidden>🍽️</span>
+    <div className="aspect-[4/3] bg-gradient-to-br from-secondary to-background flex items-center justify-center overflow-hidden">
+      {item.image ? (
+        <img
+          src={item.image}
+          alt={item.name}
+          className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+      ) : (
+        <span className="text-6xl" aria-hidden>🍽️</span>
+      )}
     </div>
     {item.bestSeller && (
       <Badge className="absolute top-3 left-3 bg-gradient-gold text-primary-foreground border-0 shadow-gold">
@@ -61,7 +69,7 @@ const MenuSection = () => {
             Sajian favorit, siap setiap saat.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Lima menu makanan dan lima minuman terbaik kami. Lihat menu lengkap untuk pilihan lainnya.
+            Menu makanan dan minuman pilihan kami. Lihat menu lengkap untuk semua pilihan.
           </p>
         </div>
 

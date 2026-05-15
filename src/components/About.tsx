@@ -27,7 +27,7 @@ const About = () => {
           <h2 className="font-serif-display text-3xl md:text-4xl font-bold">
             Melayani Dengan Hati, Hadir Sebagai Solusi.
           </h2>
-          <p className="mt-4 text-muted-foreground">
+          <p className="mt-4 text-sm text-muted-foreground">
             Bengawan Solo Food Hub adalah kumpulan resto-resto pilihan area UNS yang menyediakan
             layanan pesan antar online mandiri 24 jam nonstop dengan harga offline karena tanpa
             biaya pemesanan, sharing profit & sharing promo.

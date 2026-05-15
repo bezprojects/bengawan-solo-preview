@@ -6,6 +6,7 @@ import Hours from "@/components/Hours";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <BackToTop />
     </div>
   );
 };
