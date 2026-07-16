@@ -38,26 +38,6 @@ const Navbar = () => {
     >
       <nav className="container flex items-center justify-between h-16 md:h-20">
         <a href="#beranda" className="flex items-center gap-2 group">
-          <div className="relative h-10 w-10 md:h-12 md:w-12 flex items-center justify-center">
-            {/* Modern image formats with fallbacks */}
-            <picture>
-              {/* AVIF - most modern, best compression */}
-              <source srcSet="/logo.avif" type="image/avif" />
-              {/* WebP - good browser support, good compression */}
-              <source srcSet="/logo.webp" type="image/webp" />
-              {/* Small WebP for mobile */}
-              <source srcSet="/logo-small.webp" media="(max-width: 768px)" type="image/webp" />
-              {/* Original JPEG as fallback */}
-              <img
-                src="/logo.jpeg"
-                alt="Bengawan Solo Food Hub Logo"
-                className="h-full w-full object-contain"
-                loading="lazy"
-                width="48"
-                height="48"
-              />
-            </picture>
-          </div>
           <span className="font-serif-display text-base md:text-lg font-bold leading-tight">
             Bengawan Solo
             <span className="block text-[10px] md:text-xs tracking-[0.2em] text-gold uppercase font-sans font-medium">
