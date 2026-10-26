@@ -2,6 +2,8 @@ export type MenuItem = {
   name: string;
   description: string;
   price: number;
+  /** Harga coret (DUMMY sementara, menunggu angka dari klien). Harga asli tetap di `price`. */
+  originalPrice?: number;
   bestSeller?: boolean;
   image?: string;
   category?: string;
@@ -21,6 +23,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Ayam Penyet Dada Besar",
     description: "Dada ayam besar dipenyet, sambal terasi pedas, lalapan segar.",
     price: 30000,
+    originalPrice: 36000, // dummy
     bestSeller: true,
     image: "/menu/nasi-ayam-penyet-dada-besar.jpeg",
     category: "Ayam Penyet",
@@ -29,6 +32,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Ayam Kremes",
     description: "Ayam goreng renyah dengan taburan kremes gurih khas Solo.",
     price: 22000,
+    originalPrice: 26000, // dummy
     image: "/menu/nasi-ayam-kremes.jpeg",
     category: "Ayam Goreng",
   },
@@ -36,6 +40,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Ayam Bakar",
     description: "Ayam bakar bumbu kecap manis, dibakar di atas bara.",
     price: 30000,
+    originalPrice: 36000, // dummy
     image: "/menu/nasi-ayam-bakar-paha.jpeg",
     category: "Ayam Bakar",
   },
@@ -43,6 +48,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Ayam Bakar Dada Besar",
     description: "Potongan dada besar dibakar manis-gurih, bumbu meresap.",
     price: 30000,
+    originalPrice: 36000, // dummy
     bestSeller: true,
     image: "/menu/nasi-ayam-bakar-dada-besar.jpeg",
     category: "Ayam Bakar",
@@ -51,6 +57,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Ayam Penyet",
     description: "Ayam penyet klasik, sambal pedas, nasi hangat pulen.",
     price: 17000,
+    originalPrice: 20000, // dummy
     image: "/menu/nasi-ayam-penyet.jpeg",
     category: "Ayam Penyet",
   },
@@ -58,6 +65,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Dada Bakar Besar",
     description: "Dada ayam besar dibakar dengan bumbu kecap manis meresap.",
     price: 30000,
+    originalPrice: 36000, // dummy
     image: "/menu/nasi-dada-bakar-besar.jpeg",
     category: "Ayam Bakar",
   },
@@ -65,6 +73,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Dada Goreng Kremes Besar",
     description: "Dada ayam besar goreng renyah, taburan kremes gurih.",
     price: 30000,
+    originalPrice: 36000, // dummy
     image: "/menu/nasi-dada-goreng-kremes-besar.jpeg",
     category: "Ayam Goreng",
   },
@@ -72,6 +81,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Paha Goreng Besar Kremes",
     description: "Paha ayam besar goreng dengan kremes renyah khas Solo.",
     price: 30000,
+    originalPrice: 36000, // dummy
     image: "/menu/nasi-paha-goreng-besar-kremes.jpeg",
     category: "Ayam Goreng",
   },
@@ -79,6 +89,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Sayap Kremes",
     description: "Sayap ayam goreng kremes, renyah di luar lembut di dalam.",
     price: 20000,
+    originalPrice: 24000, // dummy
     image: "/menu/nasi-sayap-kremes.jpeg",
     category: "Ayam Goreng",
   },
@@ -86,6 +97,7 @@ export const foods: MenuItem[] = [
     name: "Ayam Bakar Paha",
     description: "Paha ayam bakar bumbu kecap, tanpa nasi.",
     price: 25000,
+    originalPrice: 30000, // dummy
     image: "/menu/ayam-bakar-paha.jpeg",
     category: "Ayam Bakar",
   },
@@ -93,6 +105,7 @@ export const foods: MenuItem[] = [
     name: "Ayam Paha Kremes",
     description: "Paha ayam goreng kremes, tanpa nasi.",
     price: 16000,
+    originalPrice: 19000, // dummy
     image: "/menu/ayam-paha-kremes.jpeg",
     category: "Ayam Goreng",
   },
@@ -100,6 +113,7 @@ export const foods: MenuItem[] = [
     name: "Dada Bakar Besar",
     description: "Dada ayam besar dibakar, tanpa nasi.",
     price: 25000,
+    originalPrice: 30000, // dummy
     image: "/menu/dada-bakar-besar.jpeg",
     category: "Ayam Bakar",
   },
@@ -107,6 +121,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Goreng Original",
     description: "Nasi goreng klasik dengan bumbu rempah khas Solo.",
     price: 15000,
+    originalPrice: 18000, // dummy
     image: "/menu/nasi-goreng-original.jpeg",
     category: "Nasi Goreng",
   },
@@ -114,6 +129,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Goreng Telur",
     description: "Nasi goreng dengan telur ceplok atau orak-arik.",
     price: 17000,
+    originalPrice: 20000, // dummy
     image: "/menu/nasi-goreng-telur.jpeg",
     category: "Nasi Goreng",
   },
@@ -121,6 +137,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Goreng Ayam Suwir",
     description: "Nasi goreng dengan topping ayam suwir bumbu gurih.",
     price: 17000,
+    originalPrice: 20000, // dummy
     bestSeller: true,
     image: "/menu/nasi-goreng-ayam-suwir.jpeg",
     category: "Nasi Goreng",
@@ -129,6 +146,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Goreng Bakso",
     description: "Nasi goreng dengan irisan bakso sapi kenyal.",
     price: 19000,
+    originalPrice: 23000, // dummy
     image: "/menu/nasi-goreng-bakso-1.jpeg",
     category: "Nasi Goreng",
   },
@@ -136,6 +154,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Goreng Sosis",
     description: "Nasi goreng dengan sosis sapi pilihan.",
     price: 19000,
+    originalPrice: 23000, // dummy
     image: "/menu/nasi-goreng-sosis-1.jpeg",
     category: "Nasi Goreng",
   },
@@ -143,6 +162,7 @@ export const foods: MenuItem[] = [
     name: "Nasi Goreng Bungkus Telur",
     description: "Nasi goreng dibungkus telur dadar tipis, sajian istimewa.",
     price: 23000,
+    originalPrice: 28000, // dummy
     bestSeller: true,
     image: "/menu/nasi-goreng-bungkus-telur.jpeg",
     category: "Nasi Goreng",
@@ -151,6 +171,7 @@ export const foods: MenuItem[] = [
     name: "Traktir Driver (Nasi Goreng + Es Teh)",
     description: "Paket hemat nasi goreng original dan es teh manis, cocok untuk driver ojol.",
     price: 15000,
+    originalPrice: 18000, // dummy
     image: "/menu/traktir-driver-nasi-goreng-+-es-teh.jpeg",
     category: "Paket",
     bestSeller: true,
@@ -163,6 +184,7 @@ export const drinks: MenuItem[] = [
     name: "Susu Coklat / Putih",
     description: "Susu coklat atau putih, hangat atau dingin.",
     price: 8000,
+    originalPrice: 10000, // dummy
     image: "/menu/susu-coklat-putih.jpeg",
     category: "Susu",
   },
@@ -170,6 +192,7 @@ export const drinks: MenuItem[] = [
     name: "Es / Teh Jeruk",
     description: "Perasan jeruk peras segar, bisa panas atau dingin.",
     price: 5000,
+    originalPrice: 6000, // dummy
     image: "/menu/es-jeruk.jpeg",
     category: "Teh",
   },
@@ -177,6 +200,7 @@ export const drinks: MenuItem[] = [
     name: "Es / Teh Kampul",
     description: "Teh dengan irisan jeruk nipis, segar khas Solo.",
     price: 5500,
+    originalPrice: 7000, // dummy
     bestSeller: true,
     image: "/menu/es-kampul.jpeg",
     category: "Teh",
@@ -185,6 +209,7 @@ export const drinks: MenuItem[] = [
     name: "Es / Teh Tawar-Manis",
     description: "Teh klasik, sajian panas atau dingin.",
     price: 5000,
+    originalPrice: 6000, // dummy
     image: "/menu/es-teh.jpeg",
     category: "Teh",
   },
