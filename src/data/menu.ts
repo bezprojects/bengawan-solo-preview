@@ -208,9 +208,17 @@ export const testimonials = [
   },
 ];
 
+// Nomor WhatsApp utama untuk semua CTA.
+// Ganti nilai ini (dan WHATSAPP_DISPLAY) saat nomor final dari klien sudah tersedia.
 export const WHATSAPP_NUMBER = "628877831354"; // format internasional tanpa +
 export const WHATSAPP_DISPLAY = "0887-783-1354";
 export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=Halo%20Bengawan%20Solo%20Food%20Hub%2C%20saya%20ingin%20pesan`;
+
+// Link katalog WhatsApp. Nomor khusus katalog BELUM dikirim klien, jadi untuk
+// sementara semua CTA (termasuk banner promo) diarahkan ke chat WHATSAPP_LINK.
+// Saat nomor katalog sudah ada, ganti baris di bawah menjadi:
+//   export const WHATSAPP_CATALOG_LINK = `https://wa.me/c/${NOMOR_KATALOG}`;
+export const WHATSAPP_CATALOG_LINK = WHATSAPP_LINK;
 
 export const SOCIAL_LINKS = {
   instagram: "#",

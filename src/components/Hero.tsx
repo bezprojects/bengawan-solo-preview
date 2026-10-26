@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { foods, formatRupiah, WHATSAPP_LINK, SOCIAL_LINKS, WHATSAPP_NUMBER } from "@/data/menu";
+import { foods, formatRupiah, WHATSAPP_LINK, WHATSAPP_CATALOG_LINK, SOCIAL_LINKS } from "@/data/menu";
 import { heroSlides } from "@/data/hero-slides";
-import { Clock, ChevronLeft, ChevronRight, Instagram } from "lucide-react";
+import { ChevronLeft, ChevronRight, Instagram } from "lucide-react";
 
 const bestSellers = [
   {
@@ -60,8 +60,8 @@ const Hero = () => {
       <div className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
 
       <div className="container relative">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div className="animate-fade-up">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div className="animate-fade-up min-w-0">
             <h1 className="font-serif-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.05] mt-2">
               Melayani Dengan Hati,
               <br />
@@ -121,13 +121,13 @@ const Hero = () => {
                 </p>
 
                 {/* Best Sellers Auto-Slider */}
-                <div className="overflow-hidden w-full relative rounded-2xl border border-primary/20 bg-card p-3 shadow-card text-left">
+                <div className="overflow-hidden w-full relative rounded-2xl border border-primary/20 bg-card shadow-card text-left">
                   <div 
                     className="flex transition-transform duration-700 ease-in-out" 
                     style={{ transform: `translateX(-${activeSeller * 100}%)` }}
                   >
                     {bestSellers.map((item) => (
-                      <div key={item.name} className="w-full shrink-0 flex gap-4 items-center px-1">
+                      <div key={item.name} className="w-full shrink-0 flex gap-4 items-center p-3">
                         <div className="w-16 h-16 shrink-0 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center overflow-hidden rounded-xl border border-border">
                           <img 
                             src={item.image} 
@@ -178,7 +178,7 @@ const Hero = () => {
 
                 {/* Landscape Best Seller Promo Banner */}
                 <a 
-                  href={`https://wa.me/c/${WHATSAPP_NUMBER}`}
+                  href={WHATSAPP_CATALOG_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 block relative w-full aspect-[21/9] rounded-2xl overflow-hidden border border-primary/20 shadow-card bg-black/40 group text-left hover:border-primary/50 transition-colors"
@@ -208,7 +208,7 @@ const Hero = () => {
                     <div className="flex items-center justify-between mt-1">
                       <span className="text-gold font-bold text-sm">Rp 30.000</span>
                       <span className="text-[9px] text-green-400 font-semibold bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded">
-                        Buka Katalog WA
+                        Pesan via WA
                       </span>
                     </div>
                   </div>
@@ -229,7 +229,7 @@ const Hero = () => {
         </div>
 
         {/* Hero Image Carousel */}
-        <div className="relative animate-fade-in">
+        <div className="relative animate-fade-in min-w-0">
           <div className="relative aspect-[4/3] md:aspect-square max-w-md mx-auto rounded-3xl overflow-hidden border border-primary/20 shadow-card bg-gradient-to-br from-primary/10 to-secondary/10">
             {/* Slides */}
             {heroSlides.map((slide, i) => (

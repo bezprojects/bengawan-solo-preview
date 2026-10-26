@@ -47,7 +47,7 @@ const Footer = () => {
           <p className="text-muted-foreground mb-6">
             Hubungi langsung WhatsApp atau pesan lewat aplikasi favoritmu.
           </p>
-          <Button asChild size="lg" className="bg-gradient-gold text-primary-foreground hover:opacity-90 shadow-gold">
+          <Button asChild size="lg" className="w-full sm:w-auto px-4 sm:px-8 bg-gradient-gold text-primary-foreground hover:opacity-90 shadow-gold">
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
               <Phone className="mr-2 h-4 w-4" /> WhatsApp {WHATSAPP_DISPLAY}
             </a>
@@ -73,7 +73,7 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="border-t border-border">
-        <div className="container py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
+        <div className="container pt-6 pb-24 sm:pb-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
           <p className="font-serif-display">
             <span className="text-gold font-semibold">Bengawan Solo</span> Food Hub
           </p>
